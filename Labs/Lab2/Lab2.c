@@ -3,7 +3,7 @@
 #define BUFFSIZE 4096
 
 char* itoa(int num, char* str, int base);
-
+void stringRev(char* str, int length);
 int main(int argc, char *argv[]) {
 	int number, base;
 
@@ -38,7 +38,49 @@ int main(int argc, char *argv[]) {
 
 	return 0;
 }
+void stringRev(char* str, int length){
+	int front = 0;
+	int end = length - 1;
+	while(front < end){
+		int a, b;
+		a = str[front];
+		b = str[end];
 
+		str[front] = a;
+		str[end] = b;
+	}
+}
 char* itoa(int num, char* str, int base) {
-	return 0;
+	int count = 0;
+
+	if(num == 0){
+		str[count++] = '0';
+		str[count] = '\0';
+		return str;
+	}
+	
+	int flag = 0;
+
+	if(num < 0 && base == 10){					//signals a base 10 num is negative
+		flag = 1;								//then sets it to positive while flaging it was negative
+		num = num * -1;
+	}
+
+	while(num != 0){
+		int temp = num % base;
+		if(temp > 9){
+			str[count++] = (temp-10) + 'a';
+		}
+		else{
+			str[count++] = temp + '0';
+		}
+		num = num/base;
+	}
+
+	if(flag == 1){								//appends the negative symbol
+		str[count++] = '-';
+	}
+	str[count] = '\0';
+
+	return str;
 }
