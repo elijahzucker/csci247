@@ -38,22 +38,27 @@ int main(int argc, char *argv[]) {
 
 	return 0;
 }
-void stringRev(char* str, int length){
+void stringRev(char* str, int length){			//reverses the order of a given string
+	if(length == 0){							
+		return;
+	}
 	int front = 0;
 	int end = length - 1;
-	while(front < end){
-		int a, b;
+	while(front < end){							//swaps the values at the points front and end
+		char a, b;								//repeatedly until they meat in the middle
 		a = str[front];
 		b = str[end];
 
-		str[front] = a;
-		str[end] = b;
+		str[front] = b;
+		str[end] = a;
+		front++;
+		end--;
 	}
 }
 char* itoa(int num, char* str, int base) {
-	int count = 0;
+	int count = 0;								//initialize itterator
 
-	if(num == 0){
+	if(num == 0){								//checks if num is zero and trivialy solved
 		str[count++] = '0';
 		str[count] = '\0';
 		return str;
@@ -66,7 +71,7 @@ char* itoa(int num, char* str, int base) {
 		num = num * -1;
 	}
 
-	while(num != 0){
+	while(num != 0){							//converts the number and reads it in in reverse direction
 		int temp = num % base;
 		if(temp > 9){
 			str[count++] = (temp-10) + 'a';
@@ -81,6 +86,6 @@ char* itoa(int num, char* str, int base) {
 		str[count++] = '-';
 	}
 	str[count] = '\0';
-
+	stringRev(str, count);
 	return str;
 }
