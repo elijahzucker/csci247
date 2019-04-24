@@ -15,7 +15,8 @@ int main(int argc, char *argv[]) {
     printf("Enter a number: ");
     scanf("%d",&i);
     //printf("%d \n", countSetBits(i));                     //Task 1
-    printf("%d \n", reverseBits(i));
+    //printf("%d \n", reverseBits(i));                      //Task 3
+    printf("%d \n", onlyOneBitSet(i));
 
     return 0;
 }
@@ -44,11 +45,21 @@ int reverseBits(int var){
     }
     return i;
 }
-/*
-bool onlyOneBitSet(int){
 
+bool onlyOneBitSet(int var){
+    /*int i;
+    while(var && i < 1){
+        i += var & 1;
+        var >>= 1;
+    }
+    printf("the value of i: %d", i);
+    if(i == 1){
+        return true;
+    }
+    return false;*/
+    return var && !(var & (var-1));
 }
-
+/*
 bool onlyOneBitSetInEvenPosition(int){
 
 }
