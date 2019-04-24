@@ -96,13 +96,13 @@ int numberOfOperationsRequired(int var){
     if(var <= 1){
         return count;
     }
-    while(var > 1){
-        if(onlyOneBitSet(var)){
+    while(var > 1){                         //find compliment put the 2 together then bitwise shift by 1 to the right to find the highest power of 2 less than the var
+        if(!onlyOneBitSet(var)){
             var = var - (var >> 1);
             count++;
             continue;
         }
-        var = var/2;
+        var >>= 1;                          //dividing by 2
         count++;
     }
     return count;
